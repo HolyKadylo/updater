@@ -1,3 +1,6 @@
 com\kadylo\updater\App.class
+<<<<<<< HEAD
 com\kadylo\updater\FilecrypterPoller.class
 com\kadylo\updater\Starter.class
+=======
+>>>>>>> 2dc19efbadf62c673d38401fe144bf942f6e73ad
