@@ -14,7 +14,6 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
-<<<<<<< HEAD
 	<dependency>
 		<groupId>javax.servlet</groupId>
 		<artifactId>servlet-api</artifactId>
@@ -56,13 +55,6 @@
       </plugin>
 	
 	
-=======
-  </dependencies>
-  <build>
-    <finalName>updater</finalName>
-	
-	<plugins>
->>>>>>> 2dc19efbadf62c673d38401fe144bf942f6e73ad
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-dependency-plugin</artifactId>
