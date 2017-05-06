@@ -36,13 +36,12 @@
         <executions>
           <execution>
             <id>copy-resources</id>
-            <!-- here the phase you need -->
             <phase>validate</phase>
             <goals>
               <goal>copy-resources</goal>
             </goals>
             <configuration>
-              <outputDirectory>${basedir}/target/updater/WEB-INF/res</outputDirectory>
+              <outputDirectory>${basedir}/target/updater</outputDirectory>
               <resources>          
                 <resource>
                   <directory>src/main/res</directory>
