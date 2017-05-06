@@ -17,7 +17,7 @@ public class Starter extends HttpServlet{
 		
 		String filecryptersToMaintain = null;
 		try{
-			InputStream is = getClass().getClassLoader().getResourceAsStream("FilecryptersToMaintain.txt");
+			InputStream is = getClass().getClassLoader().getResourceAsStream("WEB-INF/FilecryptersToMaintain.txt");
 			BufferedReader br = new BufferedReader(new InputStreamReader(is));
 			filecryptersToMaintain = org.apache.commons.io.IOUtils.toString(br);
 		} catch (Exception e){
