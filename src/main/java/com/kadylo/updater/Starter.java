@@ -17,7 +17,9 @@ public class Starter extends HttpServlet{
 		
 		String filecryptersToMaintain = null;
 		try{
-			filecryptersToMaintain = new Scanner(new File("FilecryptersToMaintain.txt")).useDelimiter("\\Z").next();
+			InputStream is = getClass().getClassLoader().getResourceAsStream("FilecryptersToMaintain.txt");
+			BufferedReader br = new BufferedReader(new InputStreamReader(is));
+			filecryptersToMaintain = org.apache.commons.io.IOUtils.toString(br);
 		} catch (Exception e){
 			System.out.println( "Missing FilecryptersToMaintain.txt" );
 			System.exit(-1);
