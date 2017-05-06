@@ -18,11 +18,11 @@ public class Starter extends HttpServlet{
 		String filecryptersToMaintain = null;
 		try{
 			filecryptersToMaintain = new Scanner(new File("FilecryptersToMaintain.txt")).useDelimiter("\\Z").next();
-			filecryptersToMaintain = filecryptersToMaintain.replaceAll(System.getProperty("line.separator") ," ");
 		} catch (Exception e){
 			System.out.println( "Missing FilecryptersToMaintain.txt" );
 			System.exit(-1);
 		}
+		filecryptersToMaintain = filecryptersToMaintain.replaceAll(System.getProperty("line.separator") ," ");
 		Scanner scanner = new Scanner(filecryptersToMaintain);
 		scanner.useDelimiter(" ");
 		while (scanner.hasNext()){
