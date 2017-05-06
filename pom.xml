@@ -41,7 +41,7 @@
               <goal>copy-resources</goal>
             </goals>
             <configuration>
-              <outputDirectory>${basedir}/target/updater</outputDirectory>
+              <outputDirectory>${basedir}/target/updater/WEB-INF</outputDirectory>
               <resources>          
                 <resource>
                   <directory>src/main/res</directory>
