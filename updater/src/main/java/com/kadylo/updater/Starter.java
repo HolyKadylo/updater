@@ -15,11 +15,19 @@ public class Starter extends HttpServlet{
 		
 		out.println("You've accessed Starter servlet");
 		
+		Properties properties = new Properties();
+		
+		
 		String filecryptersToMaintain = null;
 		try{
 			InputStream is = getClass().getClassLoader().getResourceAsStream("FilecryptersToMaintain.txt");
 			BufferedReader br = new BufferedReader(new InputStreamReader(is));
 			filecryptersToMaintain = org.apache.commons.io.IOUtils.toString(br);
+			
+			InputStream in = getClass().getClassLoader().getResourceAsStream("properties.PROPERTIES");
+			properties.load(in);
+			in.close();
+			System.out.println(properties.getProperty("FilecrypterAPIKey"));
 		} catch (Exception e){
 			System.out.println( "Missing FilecryptersToMaintain.txt" );
 			System.exit(-1);
