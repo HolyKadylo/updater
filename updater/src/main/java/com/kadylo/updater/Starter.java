@@ -27,7 +27,7 @@ public class Starter extends HttpServlet{
 			InputStream in = getClass().getClassLoader().getResourceAsStream("properties.PROPERTIES");
 			properties.load(in);
 			in.close();
-			System.out.println(properties.getProperty("FilecrypterAPIKey"));
+			//System.out.println();
 		} catch (Exception e){
 			System.out.println( "Missing FilecryptersToMaintain.txt" );
 			System.exit(-1);
@@ -35,8 +35,12 @@ public class Starter extends HttpServlet{
 		filecryptersToMaintain = filecryptersToMaintain.replaceAll(System.getProperty("line.separator") ," ");
 		Scanner scanner = new Scanner(filecryptersToMaintain);
 		scanner.useDelimiter(" ");
+		ArrayList <String> filecryptersList = new ArrayList<String>();
 		while (scanner.hasNext()){
-			System.out.println(scanner.next());
+			filecryptersList.add(scanner.next());
 		}
+		FilecrypterPoller poller = new FilecrypterPoller (filecryptersList, 5000, properties.getProperty("FilecrypterAPIKey"));
+		//poller.start();
+		(new Thread(poller)).start();
 	}
 }
