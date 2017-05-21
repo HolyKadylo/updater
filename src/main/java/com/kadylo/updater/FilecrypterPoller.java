@@ -30,7 +30,7 @@ public class FilecrypterPoller implements Runnable{
 				try{
 					Thread.currentThread().sleep(period);
 					
-					poll(build(filecrypter));
+					poll(buildStatus(filecrypter));
 				} catch (Exception e){
 					e.printStackTrace();
 				}
@@ -38,12 +38,25 @@ public class FilecrypterPoller implements Runnable{
 		}
     }
 	
-	// builds query to API from filecrypter address3
-	private String build (String filecrypter){
+	// builds status query to API from filecrypter address3
+	private String buildStatus (String filecrypter){
 		try{
 			return "https://filecrypt.cc/api.php?api_key=" 
 				+ APIKey 
 				+ "&fn=containerV2&sub=status&container_id=" 
+				+ (new URL (filecrypter)).getFile().substring(11, (new URL (filecrypter)).getFile().indexOf("."));
+		} catch (MalformedURLException e){
+			System.out.println("-->" + e.toString());
+			return null;
+		}
+	}
+	
+	// builds info query to API from filecrypter address3
+	private String buildInfo (String filecrypter){
+		try{
+			return "https://filecrypt.cc/api.php?api_key=" 
+				+ APIKey 
+				+ "&fn=containerV2&sub=info&container_id=" 
 				+ (new URL (filecrypter)).getFile().substring(11, (new URL (filecrypter)).getFile().indexOf("."));
 		} catch (MalformedURLException e){
 			System.out.println("-->" + e.toString());
