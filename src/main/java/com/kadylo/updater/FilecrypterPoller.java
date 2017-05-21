@@ -64,17 +64,29 @@ public class FilecrypterPoller implements Runnable{
 		}
 	}
 	
+	// simple requester
+	private String getRequest(String address){
+		String answer = null;
+		try{
+			URLConnection urlConnection = (new URL (address)).openConnection();
+			urlConnection.connect();
+			InputStream is = urlConnection.getInputStream();
+			answer = org.apache.commons.io.IOUtils.toString(is, "UTF-8");
+			is.close();
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		
+		return answer;
+	}
+	
 	// returns list of names of offline entities
 	// if none, returns null
 	private ArrayList<String> poll(String address){
 		try{
 			System.out.println("-->polling " + address);
 			// obtaining answer
-			URLConnection urlConnection = (new URL (address)).openConnection();
-			urlConnection.connect();
-			InputStream is = urlConnection.getInputStream();
-			String answer = org.apache.commons.io.IOUtils.toString(is, "UTF-8");
-			is.close();
+			
 			
 			// parsing
 			System.out.println("-->answer: " + answer);
