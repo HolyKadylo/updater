@@ -3,6 +3,7 @@ package com.kadylo.updater;
 import java.io.*; 
 import java.util.*;
 import java.net.*;
+import org.json.*;
 
 // this class is used to poll filecrypter folders
 // specified in FilecryptersToMaintain.txt
@@ -84,16 +85,26 @@ public class FilecrypterPoller implements Runnable{
 	// if none, returns null
 	private ArrayList<String> poll(String address){
 		try{
-			System.out.println("-->polling " + address);
-			// obtaining answer
+			System.out.print("-->checking status " + address " : ");
 			
-			
-			// parsing
-			System.out.println("-->answer: " + answer);
+			if (isOnline(getRequest(address))){
+				
+				//doing nothing actually
+				System.out.println("online");
+			} else {
+				System.out.println("offline");
+				
+				//filling the poll method
+			}
 		} catch (Exception e){
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	// checks status in JSON answer
+	private boolean isOnline(String answer){
+		
 	}
 	
 	
