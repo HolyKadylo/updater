@@ -3,7 +3,10 @@ package com.kadylo.updater;
 import java.io.*; 
 import java.util.*;
 import java.net.*;
-import org.json.*;
+//import org.json.simple.JSONArray;
+//import org.json.simple.JSONObject;
+import org.json.simple.*;
+import org.json.simple.parser.*;
 
 // this class is used to poll filecrypter folders
 // specified in FilecryptersToMaintain.txt
@@ -85,7 +88,7 @@ public class FilecrypterPoller implements Runnable{
 	// if none, returns null
 	private ArrayList<String> poll(String address){
 		try{
-			System.out.print("-->checking status " + address " : ");
+			System.out.print("-->checking status " + address + " : ");
 			
 			if (isOnline(getRequest(address))){
 				
@@ -108,21 +111,21 @@ public class FilecrypterPoller implements Runnable{
 		try{
 			Object obj = parser.parse(answer);
 			JSONObject jAnswer = (JSONObject)obj;
-			JSONObject jContainer = jAnswer.get("container");
+			JSONObject jContainer = (JSONObject)jAnswer.get("container");
 			
-			if (jContainer.get("status") == 1){
+			if ((Integer)jContainer.get("status") == 1){
 				return true;
 			} else {
 				return false;
 			}
 		} catch (ParseException pe) {
 			System.out.println("-->pe: " + pe.toString());
+			System.exit(-1);
 		} catch (Exception e) {
 			System.out.println("-->e: " + e.toString());
+			System.exit(-1);
 		}
-		System.out.println("-->Exiting now");
-		System.exit(-1);
-		return;
+		return false;
 	}
 	
 	
