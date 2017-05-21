@@ -104,7 +104,25 @@ public class FilecrypterPoller implements Runnable{
 	
 	// checks status in JSON answer
 	private boolean isOnline(String answer){
-		
+		JSONParser parser = new JSONParser();
+		try{
+			Object obj = parser.parse(answer);
+			JSONObject jAnswer = (JSONObject)obj;
+			JSONObject jContainer = jAnswer.get("container");
+			
+			if (jContainer.get("status") == 1){
+				return true;
+			} else {
+				return false;
+			}
+		} catch (ParseException pe) {
+			System.out.println("-->pe: " + pe.toString());
+		} catch (Exception e) {
+			System.out.println("-->e: " + e.toString());
+		}
+		System.out.println("-->Exiting now");
+		System.exit(-1);
+		return;
 	}
 	
 	
